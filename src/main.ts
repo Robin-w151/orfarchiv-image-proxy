@@ -1,13 +1,10 @@
-import { fetchAndTransformImage } from './image-processing.ts';
 import { Context, Hono } from 'hono';
 import { HTTPException } from 'hono/http-exception';
-import { compress } from 'hono/compress';
+import { fetchAndTransformImage } from './image-processing.ts';
 
 if (import.meta.main) {
   const app = new Hono();
-  app.use(compress());
   app.get('/', handleImageRequest);
-
   Deno.serve({ port: 8080 }, app.fetch);
 }
 
