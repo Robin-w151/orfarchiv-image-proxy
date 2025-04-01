@@ -5,7 +5,6 @@
   },
   "imports": {
     "hono": "npm:hono@^4.7.5",
-    "lru-cache": "npm:lru-cache@^11.1.0",
     "neverthrow": "npm:neverthrow@^8.2.0",
     "sharp": "npm:sharp@^0.33.5"
   },

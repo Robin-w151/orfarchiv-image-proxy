@@ -1,9 +1,18 @@
 import { Context, Hono } from 'hono';
+import { cache } from 'hono/cache';
 import { HTTPException } from 'hono/http-exception';
 import { fetchAndTransformImage } from './image-processing.ts';
 
 if (import.meta.main) {
   const app = new Hono();
+  app.use(
+    '*',
+    cache({
+      cacheName: 'image-proxy',
+      cacheControl: 'max-age=3600',
+      wait: true,
+    }),
+  );
   app.get('/', handleImageRequest);
   Deno.serve({ port: 8080 }, app.fetch);
 }
